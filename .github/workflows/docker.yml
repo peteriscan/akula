@@ -12,7 +12,7 @@ on:
 
 env:
   DOCKERHUB_IMAGE: peteriscan/akula
-  GHCR_IMAGE: ${{ github.repository }}
+  GHCR_IMAGE: ${{ github.repository }} # user/repo
 
 jobs:
   docker:
@@ -20,9 +20,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-      - name: Docker meta
+      - name: Generate Docker tags and labels
         id: meta
         uses: docker/metadata-action@v4
         with:
@@ -36,6 +37,8 @@ jobs:
             type=semver,pattern={{major}}.{{minor}}
             type=semver,pattern={{major}}
 
+      # uncomment for linux/arm64 builds
+      # it's commented out for now because these builds are very slow
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v2
 
