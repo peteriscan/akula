@@ -16,7 +16,7 @@ env:
 
 jobs:
   docker:
-    name: Build a Docker image and push it to the registry
+    name: Build and push Docker image
     runs-on: ubuntu-latest
 
     steps:
