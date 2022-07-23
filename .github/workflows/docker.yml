@@ -27,8 +27,8 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            docker.io/library/$DOCKERHUB_IMAGE
-            ghcr.io/$GHCR_IMAGE
+            docker.io/library/${{ env.DOCKERHUB_IMAGE }}
+            ghcr.io/${{ env.GHCR_IMAGE }}
           tags: |
             type=ref,event=branch
             type=ref,event=pr
